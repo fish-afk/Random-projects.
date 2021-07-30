@@ -93,7 +93,7 @@ while run:
                     # Setting the volume
                     mixer.music.set_volume(0.7)
                     mixer.music.play()
-                    time.sleep(0.5)
+                    time.sleep(0.3)
 
             if event.button == 3:
                 start_screen_display("paused")
