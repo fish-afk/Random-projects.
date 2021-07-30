@@ -46,7 +46,19 @@ mixer.music.load("Assets/sfx_point.wav")
 mixer.music.set_volume(0.7)
 
 # our surfaces and global variables: ---------------------------------------------------------------
+
+
+# setting icon
+icon_surface = pygame.image.load('Assets/storm.png')
+pygame.display.set_icon(icon_surface)
+
+# setting caption
+
 pygame.display.set_caption("Tic Tac Toe Grid")
+pygame.display.set_icon(icon_surface)
+
+# setting game screen
+
 game_screen = pygame.display.set_mode((400, 400))
 bg_surface = pygame.image.load('Assets/images.png').convert()
 bg_surface = pygame.transform.scale2x(bg_surface)
@@ -66,6 +78,7 @@ run = True
 # turns true only when space is pressed:
 game_on = False
 
+# starts with X mouse pos as None and counter to 0
 current_player = "X"
 mouse_position = None
 counter = 0
@@ -86,6 +99,8 @@ while run:
         if event.type == pygame.KEYDOWN:  # if a key is pressed and it is the space key game runs
             if pygame.K_SPACE:
                 game_on = True
+                bg_surface = pygame.image.load('Assets/images.png').convert()
+                bg_surface = pygame.transform.scale2x(bg_surface)
 
         if event.type == pygame.MOUSEBUTTONDOWN:  # deploying X and O with the left click
             if event.button == 1 and game_on:
