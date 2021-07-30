@@ -4,10 +4,13 @@ import sys
 from pygame import mixer
 
 
-def start_screen_display(text):
-    text_surface = game_font.render(f'{text}\n', True, (255, 255, 255))
+def start_screen_display(text, text2):
+    text_surface = game_font.render(f'{text}', True, (255, 255, 255))
     text_rect = text_surface.get_rect(center=(200, 100))
+    text_surface2 = game_font.render(f'{text2}', True, (255, 255, 255))
+    text2_rect = text_surface2.get_rect(center=(200, 200))
     game_screen.blit(text_surface, text_rect)
+    game_screen.blit(text_surface2, text2_rect)
 
 
 def boxes(surface):
@@ -23,15 +26,15 @@ def check_the_space(turn):
     global current_player
     global mouse_position
 
-    x_o_player = game_font_for_XO.render(current_player, True, (255, 255, 255))
+    x_o_player = font_forXO.render(current_player, True, (255, 255, 255))
 
     if turn % 2 == 0:
         current_player = "O"
-        x_o_player = game_font_for_XO.render(current_player, True, (255, 0, 0))
+        x_o_player = font_forXO.render(current_player, True, (255, 0, 0))
 
     elif turn % 2 != 0:
         current_player = "X"
-        x_o_player = game_font_for_XO.render(current_player, True, (0, 0, 0))
+        x_o_player = font_forXO.render(current_player, True, (0, 0, 0))
 
     if game_on:
         x_o_rect = x_o_player.get_rect(center=tuple(mouse_position))
@@ -69,8 +72,8 @@ color = pygame.image.load('Assets/768786f1bda4121b652366c21399a249.png').convert
 color = pygame.transform.scale2x(color)
 
 # fonts
-game_font = pygame.font.Font('Assets/04B_19.ttf', 30)
-game_font_for_XO = pygame.font.Font('Assets/04B_19.ttf', 80)
+game_font = pygame.font.SysFont("comicsansms", 35)
+font_forXO = pygame.font.SysFont("comicsansms", 60)
 
 # clock
 clock = pygame.time.Clock()
@@ -121,7 +124,6 @@ while run:
                     time.sleep(0.3)
 
             if event.button == 3:
-                start_screen_display("paused")
                 game_on = False
 
     if game_on:  # if game is on, the surface loads, at 0, 0 but if counter goes above 10, game on turns False, and
@@ -138,7 +140,7 @@ while run:
         mixer.music.set_volume(0.7)
         counter = 0
         game_screen.blit(color, (0, -100))
-        start_screen_display("Press Space To Start")
+        start_screen_display("Press Space To Start", "Left click to clear grid.")
 
     pygame.display.update()
     clock.tick(60)  # 60 FPS...
