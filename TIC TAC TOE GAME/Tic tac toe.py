@@ -33,23 +33,23 @@ def check_the_space(turn):
 # EXECUTE -
 pygame.init()
 mixer.init()
-mixer.music.load("sfx_point.wav")
+mixer.music.load("Assets/sfx_point.wav")
 # Setting the volume
 mixer.music.set_volume(0.7)
 
 # our surfaces and global variables: ---------------------------------------------------------------
 pygame.display.set_caption("Tic Tac Toe Grid")
 game_screen = pygame.display.set_mode((400, 400))
-bg_surface = pygame.image.load('images.png').convert()
+bg_surface = pygame.image.load('Assets/images.png').convert()
 bg_surface = pygame.transform.scale2x(bg_surface)
 
 # black screen
-color = pygame.image.load('768786f1bda4121b652366c21399a249.png').convert()
+color = pygame.image.load('Assets/768786f1bda4121b652366c21399a249.png').convert()
 color = pygame.transform.scale2x(color)
 
 # fonts
-game_font = pygame.font.Font('04B_19.ttf', 30)
-game_font_for_XO = pygame.font.Font('04B_19.ttf', 80)
+game_font = pygame.font.Font('Assets/04B_19.ttf', 30)
+game_font_for_XO = pygame.font.Font('Assets/04B_19.ttf', 80)
 
 # clock
 clock = pygame.time.Clock()
@@ -89,7 +89,7 @@ while run:
 
                 if counter == 10:  # this sound plays when counter is 10
                     mixer.init()
-                    mixer.music.load("sfx_die.wav")
+                    mixer.music.load("Assets/sfx_die.wav")
                     # Setting the volume
                     mixer.music.set_volume(0.7)
                     mixer.music.play()
@@ -108,7 +108,7 @@ while run:
 
     else:  # if game on Turns off or is False , The text is displayed AGAIN .... and the cycle continues...
         mixer.init()
-        mixer.music.load("sfx_point.wav")
+        mixer.music.load("Assets/sfx_point.wav")
         # Setting the volume
         mixer.music.set_volume(0.7)
         counter = 0
