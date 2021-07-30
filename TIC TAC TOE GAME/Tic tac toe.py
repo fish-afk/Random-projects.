@@ -4,19 +4,33 @@ import sys
 from pygame import mixer
 
 
-def start_screen_display(text, text2):
+def start_screen_display(text, text2, text3):
+
     text_surface = game_font.render(f'{text}', True, (255, 255, 255))
-    text_rect = text_surface.get_rect(center=(200, 100))
+    text_rect = text_surface.get_rect(center=(200, 120))
+
     text_surface2 = game_font.render(f'{text2}', True, (255, 255, 255))
     text2_rect = text_surface2.get_rect(center=(200, 200))
+
+    text_surface3 = game_font.render(f'{text3}', True, (255, 255, 255))
+    text3_rect = text_surface3.get_rect(center=(200, 300))
+
     game_screen.blit(text_surface, text_rect)
     game_screen.blit(text_surface2, text2_rect)
+    game_screen.blit(text_surface3, text3_rect)
+
+
+def load_logo_surfaces(logo1, logo2):
+
+    game_screen.blit(logo1, (230, 0))
+    game_screen.blit(logo2, (75, 0))
 
 
 def boxes(surface):
     box_list = [surface for i in range(1, 10)]
 
     for box in box_list:
+
         box_display = pygame.transform.scale(box, (120, 120))
         box_rect = box_display.get_rect(center=mouse_position)
         bg_surface.blit(box_display, box_rect)
@@ -29,14 +43,17 @@ def check_the_space(turn):
     x_o_player = font_forXO.render(current_player, True, (255, 255, 255))
 
     if turn % 2 == 0:
+
         current_player = "O"
         x_o_player = font_forXO.render(current_player, True, (255, 0, 0))
 
     elif turn % 2 != 0:
+
         current_player = "X"
         x_o_player = font_forXO.render(current_player, True, (0, 0, 0))
 
     if game_on:
+
         x_o_rect = x_o_player.get_rect(center=tuple(mouse_position))
         bg_surface.blit(x_o_player, x_o_rect)
 
@@ -60,6 +77,13 @@ pygame.display.set_icon(icon_surface)
 pygame.display.set_caption("Tic Tac Toe Grid")
 pygame.display.set_icon(icon_surface)
 
+# setting logo surfaces
+logo_surface = pygame.image.load("Assets/1200px-Tic_tac_toe.svg.png")
+logo_surface = pygame.transform.scale(logo_surface, (100, 100))
+
+logo2_surface = pygame.image.load("Assets/EroaQ-5W8AEkUX5.png")
+logo2_surface = pygame.transform.scale(logo2_surface, (100, 100))
+
 # setting game screen
 
 game_screen = pygame.display.set_mode((400, 400))
@@ -72,7 +96,7 @@ color = pygame.image.load('Assets/768786f1bda4121b652366c21399a249.png').convert
 color = pygame.transform.scale2x(color)
 
 # fonts
-game_font = pygame.font.SysFont("comicsansms", 35)
+game_font = pygame.font.SysFont("comicsansms", 30)
 font_forXO = pygame.font.SysFont("comicsansms", 60)
 
 # clock
@@ -140,7 +164,8 @@ while run:
         mixer.music.set_volume(0.7)
         counter = 0
         game_screen.blit(color, (0, -100))
-        start_screen_display("Press Space To Start", "Left click to clear grid.")
+        start_screen_display("Press Space To Start", "Right click to check a box", "Left click to clear grid..")
+        load_logo_surfaces(logo_surface, logo2_surface)
 
     pygame.display.update()
     clock.tick(60)  # 60 FPS...
