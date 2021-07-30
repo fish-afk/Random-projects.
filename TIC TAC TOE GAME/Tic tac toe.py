@@ -10,13 +10,13 @@ def start_screen_display(text):
     game_screen.blit(text_surface, text_rect)
 
 
-def boxes():
-    box_list = [pygame.image.load("Assets/1200px-Solid_white_bordered.svg.png") for i in range(1, 10)]
+def boxes(surface):
+    box_list = [surface for i in range(1, 10)]
 
     for box in box_list:
-        box = pygame.transform.scale(box, (120, 120))
-        box_rect = box.get_rect(center=mouse_position)
-        bg_surface.blit(box, box_rect)
+        box_display = pygame.transform.scale(box, (120, 120))
+        box_rect = box_display.get_rect(center=mouse_position)
+        bg_surface.blit(box_display, box_rect)
 
 
 def check_the_space(turn):
@@ -49,7 +49,7 @@ mixer.music.set_volume(0.7)
 
 
 # setting icon
-icon_surface = pygame.image.load('Assets/storm.png')
+icon_surface = pygame.image.load('Assets/lightning.png')
 pygame.display.set_icon(icon_surface)
 
 # setting caption
@@ -62,6 +62,7 @@ pygame.display.set_icon(icon_surface)
 game_screen = pygame.display.set_mode((400, 400))
 bg_surface = pygame.image.load('Assets/images.png').convert()
 bg_surface = pygame.transform.scale2x(bg_surface)
+box_surface = pygame.image.load("Assets/1200px-Solid_white_bordered.svg.png")
 
 # black screen
 color = pygame.image.load('Assets/768786f1bda4121b652366c21399a249.png').convert()
@@ -105,7 +106,7 @@ while run:
         if event.type == pygame.MOUSEBUTTONDOWN:  # deploying X and O with the left click
             if event.button == 1 and game_on:
                 counter += 1
-                boxes()
+                boxes(box_surface)
                 check_the_space(counter)
 
                 if counter < 10:
