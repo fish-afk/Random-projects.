@@ -4,15 +4,11 @@ import sys
 from pygame import mixer
 
 
-# newer comment
-# test comment
-# new comment
-
 def start_screen_display(text):
-    if game_on is not True:
-        text_surface = game_font.render(f'{text}\n', True, (255, 255, 255))
-        text_rect = text_surface.get_rect(center=(200, 100))
-        game_screen.blit(text_surface, text_rect)
+
+    text_surface = game_font.render(f'{text}\n', True, (255, 255, 255))
+    text_rect = text_surface.get_rect(center=(200, 100))
+    game_screen.blit(text_surface, text_rect)
 
 
 def check_the_space(turn):
