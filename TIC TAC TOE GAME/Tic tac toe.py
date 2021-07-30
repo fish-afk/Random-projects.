@@ -5,6 +5,7 @@ from pygame import mixer
 
 
 # test comment
+# new comment
 
 def start_screen_display(text):
     if game_on is not True:
