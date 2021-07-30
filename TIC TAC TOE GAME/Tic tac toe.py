@@ -4,6 +4,8 @@ import sys
 from pygame import mixer
 
 
+# test comment
+
 def start_screen_display(text):
     if game_on is not True:
         text_surface = game_font.render(f'{text}\n', True, (255, 255, 255))
