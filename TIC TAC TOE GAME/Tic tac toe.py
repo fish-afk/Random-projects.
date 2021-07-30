@@ -5,10 +5,18 @@ from pygame import mixer
 
 
 def start_screen_display(text):
-
     text_surface = game_font.render(f'{text}\n', True, (255, 255, 255))
     text_rect = text_surface.get_rect(center=(200, 100))
     game_screen.blit(text_surface, text_rect)
+
+
+def boxes():
+    box_list = [pygame.image.load("Assets/1200px-Solid_white_bordered.svg.png") for i in range(1, 10)]
+
+    for box in box_list:
+        box = pygame.transform.scale(box, (120, 120))
+        box_rect = box.get_rect(center=mouse_position)
+        bg_surface.blit(box, box_rect)
 
 
 def check_the_space(turn):
@@ -82,10 +90,11 @@ while run:
         if event.type == pygame.MOUSEBUTTONDOWN:  # deploying X and O with the left click
             if event.button == 1 and game_on:
                 counter += 1
+                boxes()
                 check_the_space(counter)
 
                 if counter < 10:
-                    mixer.music.play()  # sound only plays when counter is less than 10
+                    mixer.music.play()  # sound only plays when counter is less than
 
                 if counter == 10:  # this sound plays when counter is 10
                     mixer.init()
