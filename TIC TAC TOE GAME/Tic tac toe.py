@@ -5,7 +5,6 @@ from pygame import mixer
 
 
 def start_screen_display(text, text2, text3):
-
     text_surface = game_font.render(f'{text}', True, (255, 255, 255))
     text_rect = text_surface.get_rect(center=(200, 120))
 
@@ -21,7 +20,6 @@ def start_screen_display(text, text2, text3):
 
 
 def load_logo_surfaces(logo1, logo2):
-
     game_screen.blit(logo1, (230, 0))
     game_screen.blit(logo2, (75, 0))
 
@@ -30,7 +28,6 @@ def boxes(surface):
     box_list = [surface for i in range(1, 10)]
 
     for box in box_list:
-
         box_display = pygame.transform.scale(box, (120, 120))
         box_rect = box_display.get_rect(center=mouse_position)
         bg_surface.blit(box_display, box_rect)
@@ -53,7 +50,6 @@ def check_the_space(turn):
         x_o_player = font_forXO.render(current_player, True, (0, 0, 0))
 
     if game_on:
-
         x_o_rect = x_o_player.get_rect(center=tuple(mouse_position))
         bg_surface.blit(x_o_player, x_o_rect)
 
@@ -65,12 +61,9 @@ mixer.music.load("Assets/sfx_point.wav")
 # Setting the volume
 mixer.music.set_volume(0.7)
 
-
-list_of_coordinates = [(66.666, 66.666), (199.99933, 66.666), (333.3333366666, 66.666),  # first row
-                        (66.666, 199.99933), (199.99933, 199.99933), (333.3333366666, 199.99933), # second row
-                         (66.666, 333.3333366666), (199.99933, 333.3333366666), (333.3333366666, 333.3333366666)] # thrid row
-
-
+list_of_coordinates = [(66.666, 66.666), (199.99933, 66.666), (333.333366666, 66.666),  # first row
+                       (66.666, 199.99933), (199.99933, 199.99933), (333.333366666, 199.99933),  # second row
+                       (66.666, 333.33336666), (199.99933, 333.33336666), (333.33336666, 333.33336666)]  # third row
 
 # our surfaces and global variables: ---------------------------------------------------------------
 
