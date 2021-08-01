@@ -7,6 +7,7 @@ from pygame import mixer
 # display for the start screen and paused screen
 
 def start_screen_display(text, text2, text3):
+
     text_surface = game_font.render(f'{text}', True, (255, 255, 255))
     text_rect = text_surface.get_rect(center=(200, 120))
 
@@ -32,6 +33,7 @@ def load_logo_surfaces(logo1, logo2):
 # handles turns to different players each turn....
 
 def check_the_space(turn):
+
     global current_player
     global mouse_position
 
@@ -55,6 +57,7 @@ def check_the_space(turn):
 # all the possible places a person might click will be corrected ...
 
 def place_x_or_o_at_correct_pos(mouse_pos, li_of_coordinates):
+
     global counter
     global current_player
     global box1, box2, box3, box4, box5, box6, box7, box8, box9
@@ -106,34 +109,121 @@ def place_x_or_o_at_correct_pos(mouse_pos, li_of_coordinates):
     return mouse_pos
 
 
+# There could have been a better method to do this box specification but yeah i never wanted to waste time...
+
+
 def horizontal_check():
-    global game_on
+
     global box1, box2, box3, box4, box5, box6, box7, box8, box9
-    global bg_surface
+    global game_on
 
     if box1 == "X" and box2 == "X" and box3 == "X":
+        bg_surface.blit(x_winning_screen, (0, 0))
+        time.sleep(0.5)
         game_on = False
-        box1, box2, box3 = "", "", ""
+        box1, box2, box3, box4, box5, box6, box7, box8, box9 = [str(i) for i in range(1, 10)]  # decoy strings
 
     if box4 == "X" and box5 == "X" and box6 == "X":
+        bg_surface.blit(x_winning_screen, (0, 0))
+        time.sleep(0.5)
         game_on = False
-        box1, box2, box3 = "", "", ""
+        box1, box2, box3, box4, box5, box6, box7, box8, box9 = [str(i) for i in range(1, 10)]  # decoy strings
 
     if box7 == "X" and box8 == "X" and box9 == "X":
+        bg_surface.blit(x_winning_screen, (0, 0))
+        time.sleep(0.5)
         game_on = False
-        box1, box2, box3 = "", "", ""
+        box1, box2, box3, box4, box5, box6, box7, box8, box9 = [str(i) for i in range(1, 10)]  # decoy strings
 
     if box1 == "O" and box2 == "O" and box3 == "O":
+        bg_surface.blit(o_winning_screen, (0, 0))
+        time.sleep(0.5)
         game_on = False
-        box1, box2, box3 = "", "", ""
+        box1, box2, box3, box4, box5, box6, box7, box8, box9 = [str(i) for i in range(1, 10)]  # decoy strings
 
     if box4 == "O" and box5 == "O" and box6 == "O":
+        bg_surface.blit(o_winning_screen, (0, 0))
+        time.sleep(0.5)
         game_on = False
-        box1, box2, box3 = "", "", ""
+        box1, box2, box3, box4, box5, box6, box7, box8, box9 = [str(i) for i in range(1, 10)]  # decoy strings
 
     if box7 == "O" and box8 == "O" and box9 == "O":
+        bg_surface.blit(o_winning_screen, (0, 0))
+        time.sleep(0.5)
         game_on = False
-        box1, box2, box3 = "", "", ""
+        box1, box2, box3, box4, box5, box6, box7, box8, box9 = [str(i) for i in range(1, 10)]  # decoy strings
+
+
+def vertical_check():
+
+    global box1, box2, box3, box4, box5, box6, box7, box8, box9
+    global game_on
+
+    if box1 == "X" and box4 == "X" and box7 == "X":
+        bg_surface.blit(x_winning_screen, (0, 0))
+        time.sleep(0.5)
+        game_on = False
+        box1, box2, box3, box4, box5, box6, box7, box8, box9 = [str(i) for i in range(1, 10)]  # decoy strings
+
+    if box2 == "X" and box5 == "X" and box8 == "X":
+        bg_surface.blit(x_winning_screen, (0, 0))
+        time.sleep(0.5)
+        game_on = False
+        box1, box2, box3, box4, box5, box6, box7, box8, box9 = [str(i) for i in range(1, 10)]  # decoy strings
+
+    if box3 == "X" and box6 == "X" and box9 == "X":
+        bg_surface.blit(x_winning_screen, (0, 0))
+        time.sleep(0.5)
+        game_on = False
+        box1, box2, box3, box4, box5, box6, box7, box8, box9 = [str(i) for i in range(1, 10)]  # decoy strings
+
+    if box1 == "O" and box4 == "O" and box7 == "O":
+        bg_surface.blit(o_winning_screen, (0, 0))
+        time.sleep(0.5)
+        game_on = False
+        box1, box2, box3, box4, box5, box6, box7, box8, box9 = [str(i) for i in range(1, 10)]  # decoy strings
+
+    if box2 == "O" and box5 == "O" and box8 == "O":
+        bg_surface.blit(o_winning_screen, (0, 0))
+        time.sleep(0.5)
+        game_on = False
+        box1, box2, box3, box4, box5, box6, box7, box8, box9 = [str(i) for i in range(1, 10)]  # decoy strings
+
+    if box3 == "O" and box6 == "O" and box9 == "O":
+        bg_surface.blit(o_winning_screen, (0, 0))
+        time.sleep(0.5)
+        game_on = False
+        box1, box2, box3, box4, box5, box6, box7, box8, box9 = [str(i) for i in range(1, 10)]  # decoy strings
+
+
+def diagonal_check():
+
+    global box1, box2, box3, box4, box5, box6, box7, box8, box9
+    global game_on
+
+    if box1 == "X" and box5 == "X" and box9 == "X":
+        bg_surface.blit(x_winning_screen, (0, 0))
+        time.sleep(0.5)
+        game_on = False
+        box1, box2, box3, box4, box5, box6, box7, box8, box9 = [str(i) for i in range(1, 10)]  # decoy strings
+
+    if box3 == "X" and box5 == "X" and box7 == "X":
+        bg_surface.blit(x_winning_screen, (0, 0))
+        time.sleep(0.5)
+        game_on = False
+        box1, box2, box3, box4, box5, box6, box7, box8, box9 = [str(i) for i in range(1, 10)]  # decoy strings
+
+    if box1 == "O" and box5 == "O" and box9 == "O":
+        bg_surface.blit(o_winning_screen, (0, 0))
+        time.sleep(0.5)
+        game_on = False
+        box1, box2, box3, box4, box5, box6, box7, box8, box9 = [str(i) for i in range(1, 10)]  # decoy strings
+
+    if box3 == "O" and 5 == "O" and box7 == "O":
+        bg_surface.blit(o_winning_screen, (0, 0))
+        time.sleep(0.5)
+        game_on = False
+        box1, box2, box3, box4, box5, box6, box7, box8, box9 = [str(i) for i in range(1, 10)]  # decoy strings
 
 
 # EXECUTE -
@@ -150,6 +240,7 @@ list_of_coordinates = [[66.666, 66.666], [199.99933, 66.666], [333.333366666, 66
 
 box1, box2, box3, box4, box5, box6, box7, box8, box9 = [str(i) for i in range(1, 10)]  # just a decoy string for each
 # box for now
+
 
 # our surfaces and global variables: ---------------------------------------------------------------
 
@@ -180,6 +271,10 @@ box_surface = pygame.image.load("Assets/1200px-Solid_white_bordered.svg.png")
 # black screen
 color = pygame.image.load('Assets/768786f1bda4121b652366c21399a249.png').convert()
 color = pygame.transform.scale2x(color)
+
+# winning screen
+x_winning_screen = pygame.image.load('Assets/X.png').convert()
+o_winning_screen = pygame.image.load('Assets/O.png').convert()
 
 # fonts
 game_font = pygame.font.SysFont("comicsansms", 30)
@@ -222,11 +317,11 @@ while run:
 
                 check_the_space(counter)
 
-                if counter < 10:
+                if counter < 9:
                     mixer.music.play()
                     # sound only plays when counter is less than
 
-                if counter == 10:  # this sound plays when counter is 10
+                if counter == 9:  # this sound plays when counter is 10
                     mixer.init()
                     mixer.music.load("Assets/sfx_die.wav")
                     # Setting the volume
@@ -239,15 +334,15 @@ while run:
 
     if game_on:  # if game is on, the surface loads, at 0, 0 but if counter goes above 10, game on turns False, and
         # game screen turns black..
-        horizontal_check()
+        horizontal_check(), vertical_check(), diagonal_check()
         game_screen.blit(bg_surface, (0, 0))
-        if counter >= 10:
+        if counter >= 9:
             game_on = False
             game_screen.blit(color, (0, -100))
 
     elif not game_on:  # if game on Turns off or is False , The text is displayed AGAIN
-        # .... and the cycle continues...
-        time.sleep(0.7)
+        # ....
+        time.sleep(1)
         game_screen.blit(color, (0, -100))
         start_screen_display("Press Space To Start", "Right click to check a box", "Left click to clear grid..")
         load_logo_surfaces(logo_surface, logo2_surface)
