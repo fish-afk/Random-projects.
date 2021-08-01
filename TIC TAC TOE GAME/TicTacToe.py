@@ -25,7 +25,6 @@ def start_screen_display(text, text2, text3):
 
 
 def load_logo_surfaces(logo1, logo2):
-
     game_screen.blit(logo1, (230, 0))
     game_screen.blit(logo2, (75, 0))
 
@@ -56,35 +55,85 @@ def check_the_space(turn):
 # all the possible places a person might click will be corrected ...
 
 def place_x_or_o_at_correct_pos(mouse_pos, li_of_coordinates):
+    global counter
+    global current_player
+    global box1, box2, box3, box4, box5, box6, box7, box8, box9
+
+    if counter % 2 == 0:
+
+        current_player = "O"
+
+    elif counter % 2 != 0:
+
+        current_player = "X"
 
     if mouse_pos[0] < 133 and mouse_pos[1] < 133:
         mouse_pos[0], mouse_pos[1] = li_of_coordinates[0]
+        box1 = current_player
 
     elif 266 > mouse_pos[0] > 133 > mouse_pos[1]:
         mouse_pos[0], mouse_pos[1] = li_of_coordinates[1]
+        box2 = current_player
 
     elif mouse_pos[0] > 266 and mouse_pos[1] < 133:
         mouse_pos[0], mouse_pos[1] = li_of_coordinates[2]
+        box3 = current_player
 
     elif mouse_pos[0] < 133 < mouse_pos[1] < 266:
         mouse_pos[0], mouse_pos[1] = li_of_coordinates[3]
+        box4 = current_player
 
     elif 133 < mouse_pos[0] < 266 and 133 < mouse_pos[1] < 266:
         mouse_pos[0], mouse_pos[1] = li_of_coordinates[4]
+        box5 = current_player
 
     elif mouse_pos[0] > 266 and mouse_pos[1] > 133 and mouse_pos[1] < 266:
         mouse_pos[0], mouse_pos[1] = li_of_coordinates[5]
+        box6 = current_player
 
     elif mouse_pos[0] < 133 and mouse_pos[1] > 266:
         mouse_pos[0], mouse_pos[1] = li_of_coordinates[6]
+        box7 = current_player
 
     elif 133 < mouse_pos[0] < 266 and mouse_pos[1] > 266:
         mouse_pos[0], mouse_pos[1] = li_of_coordinates[7]
+        box8 = current_player
 
     elif mouse_pos[0] > 266 and mouse_pos[1] > 266:
         mouse_pos[0], mouse_pos[1] = li_of_coordinates[8]
+        box9 = current_player
 
     return mouse_pos
+
+
+def horizontal_check():
+    global game_on
+    global box1, box2, box3, box4, box5, box6, box7, box8, box9
+    global bg_surface
+
+    if box1 == "X" and box2 == "X" and box3 == "X":
+        game_on = False
+        box1, box2, box3 = "", "", ""
+
+    if box4 == "X" and box5 == "X" and box6 == "X":
+        game_on = False
+        box1, box2, box3 = "", "", ""
+
+    if box7 == "X" and box8 == "X" and box9 == "X":
+        game_on = False
+        box1, box2, box3 = "", "", ""
+
+    if box1 == "O" and box2 == "O" and box3 == "O":
+        game_on = False
+        box1, box2, box3 = "", "", ""
+
+    if box4 == "O" and box5 == "O" and box6 == "O":
+        game_on = False
+        box1, box2, box3 = "", "", ""
+
+    if box7 == "O" and box8 == "O" and box9 == "O":
+        game_on = False
+        box1, box2, box3 = "", "", ""
 
 
 # EXECUTE -
@@ -99,7 +148,8 @@ list_of_coordinates = [[66.666, 66.666], [199.99933, 66.666], [333.333366666, 66
                        [66.666, 199.99933], [199.99933, 199.99933], [333.333366666, 199.99933],  # second row
                        [66.666, 333.33336666], [199.99933, 333.33336666], [333.33336666, 333.33336666]]  # third row
 
-box1, box2, box3, box4, box5, box6, box7, box8, box9 = list_of_coordinates
+box1, box2, box3, box4, box5, box6, box7, box8, box9 = [str(i) for i in range(1, 10)]  # just a decoy string for each
+# box for now
 
 # our surfaces and global variables: ---------------------------------------------------------------
 
@@ -189,21 +239,24 @@ while run:
 
     if game_on:  # if game is on, the surface loads, at 0, 0 but if counter goes above 10, game on turns False, and
         # game screen turns black..
-
+        horizontal_check()
         game_screen.blit(bg_surface, (0, 0))
         if counter >= 10:
             game_on = False
             game_screen.blit(color, (0, -100))
 
-    else:  # if game on Turns off or is False , The text is displayed AGAIN .... and the cycle continues...
+    elif not game_on:  # if game on Turns off or is False , The text is displayed AGAIN
+        # .... and the cycle continues...
+        time.sleep(0.7)
+        game_screen.blit(color, (0, -100))
+        start_screen_display("Press Space To Start", "Right click to check a box", "Left click to clear grid..")
+        load_logo_surfaces(logo_surface, logo2_surface)
+
         mixer.init()
         mixer.music.load("Assets/sfx_point.wav")
         # Setting the volume
         mixer.music.set_volume(0.7)
         counter = 0
-        game_screen.blit(color, (0, -100))
-        start_screen_display("Press Space To Start", "Right click to check a box", "Left click to clear grid..")
-        load_logo_surfaces(logo_surface, logo2_surface)
 
     pygame.display.update()
     clock.tick(60)  # 60 FPS...
