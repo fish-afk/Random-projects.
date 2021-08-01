@@ -4,18 +4,30 @@ import sys
 from pygame import mixer
 
 
-# display for the start screen and paused screen
+# display for the start screen and paused screen and also displays tie! if X and O tie ...
 
-def start_screen_display(text, text2, text3):
+def start_screen_display(text, text2, text3, number_of_event):
 
-    text_surface = game_font.render(f'{text}', True, (255, 255, 255))
-    text_rect = text_surface.get_rect(center=(200, 120))
+    if number_of_event >= 9:
 
-    text_surface2 = game_font.render(f'{text2}', True, (255, 255, 255))
-    text2_rect = text_surface2.get_rect(center=(200, 200))
+        text_surface = game_font.render(f'{text}', True, (0, 255, 0))
+        text_rect = text_surface.get_rect(center=(200, 120))
 
-    text_surface3 = game_font.render(f'{text3}', True, (255, 255, 255))
-    text3_rect = text_surface3.get_rect(center=(200, 300))
+        text_surface2 = game_font.render(f'{text2}', True, (0, 255, 0))
+        text2_rect = text_surface2.get_rect(center=(200, 200))
+
+        text_surface3 = game_font.render(f'{text3}', True, (0, 255, 0))
+        text3_rect = text_surface3.get_rect(center=(200, 300))
+
+    else:
+        text_surface = game_font.render(f'{text}', True, (255, 255, 0))
+        text_rect = text_surface.get_rect(center=(200, 120))
+
+        text_surface2 = game_font.render(f'{text2}', True, (255, 255, 0))
+        text2_rect = text_surface2.get_rect(center=(200, 200))
+
+        text_surface3 = game_font.render(f'{text3}', True, (255, 255, 0))
+        text3_rect = text_surface3.get_rect(center=(200, 300))
 
     game_screen.blit(text_surface, text_rect)
     game_screen.blit(text_surface2, text2_rect)
@@ -33,7 +45,6 @@ def load_logo_surfaces(logo1, logo2):
 # handles turns to different players each turn....
 
 def check_the_space(turn):
-
     global current_player
     global mouse_position
 
@@ -54,10 +65,9 @@ def check_the_space(turn):
         bg_surface.blit(x_o_player, x_o_rect)
 
 
-# all the possible places a person might click will be corrected ...
+# all the possible places a person might click will be corrected by this function, ths is one of the main functions....
 
 def place_x_or_o_at_correct_pos(mouse_pos, li_of_coordinates):
-
     global counter
     global current_player
     global box1, box2, box3, box4, box5, box6, box7, box8, box9
@@ -111,9 +121,9 @@ def place_x_or_o_at_correct_pos(mouse_pos, li_of_coordinates):
 
 # There could have been a better method to do this box specification but yeah i never wanted to waste time...
 
+# 6 possibilities for a horizontal win//
 
 def horizontal_check():
-
     global box1, box2, box3, box4, box5, box6, box7, box8, box9
     global game_on
 
@@ -154,8 +164,10 @@ def horizontal_check():
         box1, box2, box3, box4, box5, box6, box7, box8, box9 = [str(i) for i in range(1, 10)]  # decoy strings
 
 
-def vertical_check():
+# 6 possibilities for a vertical win//
 
+
+def vertical_check():
     global box1, box2, box3, box4, box5, box6, box7, box8, box9
     global game_on
 
@@ -196,8 +208,9 @@ def vertical_check():
         box1, box2, box3, box4, box5, box6, box7, box8, box9 = [str(i) for i in range(1, 10)]  # decoy strings
 
 
-def diagonal_check():
+# 4 possibilities for a diagonal win//
 
+def diagonal_check():
     global box1, box2, box3, box4, box5, box6, box7, box8, box9
     global game_on
 
@@ -226,24 +239,34 @@ def diagonal_check():
         box1, box2, box3, box4, box5, box6, box7, box8, box9 = [str(i) for i in range(1, 10)]  # decoy strings
 
 
+""" Once again, there could have been a better way to initiate these win checks .... """
+
 # EXECUTE -
 
 pygame.init()
+
+# game signature sound when a click is done...
+
 mixer.init()
 mixer.music.load("Assets/sfx_point.wav")
 # Setting the volume
 mixer.music.set_volume(0.7)
 
+# our surfaces and global variables: ---------------------------------------------------------------
+
+""" All the possible places a person might click will corrected/rounded to these coordinates on the grid, they have
+been calculated by simple math for the sake of correct positioning..."""
+
+
 list_of_coordinates = [[66.666, 66.666], [199.99933, 66.666], [333.333366666, 66.666],  # first row
                        [66.666, 199.99933], [199.99933, 199.99933], [333.333366666, 199.99933],  # second row
                        [66.666, 333.33336666], [199.99933, 333.33336666], [333.33336666, 333.33336666]]  # third row
 
+""" when a person will click within these coordinates each of these boxes will be set to current player X or O 
+for later comparisons to check for wins ...  """
+
 box1, box2, box3, box4, box5, box6, box7, box8, box9 = [str(i) for i in range(1, 10)]  # just a decoy string for each
 # box for now
-
-
-# our surfaces and global variables: ---------------------------------------------------------------
-
 
 # setting icon
 icon_surface = pygame.image.load('Assets/lightning.png')
@@ -294,8 +317,7 @@ counter = 0
 
 # ---------------------------------------------------------------------------------------------------
 
-
-# GAME LOOP
+""" GAME LOOP """
 while run:
 
     for event in pygame.event.get():
@@ -327,31 +349,43 @@ while run:
                     # Setting the volume
                     mixer.music.set_volume(0.7)
                     mixer.music.play()
-                    time.sleep(0.3)
+                    time.sleep(0.2)
 
             if event.button == 3:
                 game_on = False
 
     if game_on:  # if game is on, the surface loads, at 0, 0 but if counter goes above 10, game on turns False, and
         # game screen turns black..
+
         horizontal_check(), vertical_check(), diagonal_check()
+        """ all these check are done if game is running...."""
+
         game_screen.blit(bg_surface, (0, 0))
-        if counter >= 9:
-            game_on = False
+
+        if counter >= 9:  # if counter reaches 9, screen turns black and displays that its a TIE!, since we know that
+            # after all boxes have been filled, there is no winner....
+
             game_screen.blit(color, (0, -100))
+            start_screen_display("ITS A TIE !", "A TIE!", "YES A TIE!", counter)
+            time.sleep(0.3)
+            game_on = False
 
     elif not game_on:  # if game on Turns off or is False , The text is displayed AGAIN
         # ....
         time.sleep(1)
         game_screen.blit(color, (0, -100))
-        start_screen_display("Press Space To Start", "Right click to check a box", "Left click to clear grid..")
+        start_screen_display("Press Space To Start", "Right click to check a box", "Left click to clear grid..",
+                             counter)
         load_logo_surfaces(logo_surface, logo2_surface)
 
-        mixer.init()
+        mixer.init()  # sound set back to point.wav after game has ended.....
         mixer.music.load("Assets/sfx_point.wav")
         # Setting the volume
         mixer.music.set_volume(0.7)
         counter = 0
 
     pygame.display.update()
+
     clock.tick(60)  # 60 FPS...
+
+    """ could be more than 60 for powerful computers, but 60 is a safe option... """
