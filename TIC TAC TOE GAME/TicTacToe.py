@@ -328,10 +328,9 @@ while run:
             sys.exit()
 
         if event.type == pygame.KEYDOWN:  # if a key is pressed and it is the space key game runs
-            if pygame.K_SPACE:
-                game_on = True
-                bg_surface = pygame.image.load('Assets/images.png').convert()
-                bg_surface = pygame.transform.scale2x(bg_surface)
+            game_on = True
+            bg_surface = pygame.image.load('Assets/images.png').convert()
+            bg_surface = pygame.transform.scale2x(bg_surface)
 
         if event.type == pygame.MOUSEBUTTONDOWN:  # deploying X and O with the left click
             if event.button == 1 and game_on:
@@ -372,9 +371,9 @@ while run:
 
     elif not game_on:  # if game on Turns off or is False , The text is displayed AGAIN
         # ....
-        time.sleep(1)
+        time.sleep(0.5)
         game_screen.blit(color, (0, -100))
-        start_screen_display("Press Space To Start", "Right click to check a box", "Left click to clear grid..",
+        start_screen_display("Press Any key To Start", "Right click to check a box", "Left click to clear grid..",
                              counter)
         load_logo_surfaces(logo_surface, logo2_surface)
 
