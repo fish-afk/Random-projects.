@@ -327,7 +327,7 @@ while run:
             pygame.quit()
             sys.exit()
 
-        if event.type == pygame.KEYDOWN:  # if a key is pressed and it is the space key game runs
+        if event.type == pygame.KEYDOWN:  # if a key is pressed game runs
             game_on = True
             bg_surface = pygame.image.load('Assets/images.png').convert()
             bg_surface = pygame.transform.scale2x(bg_surface)
