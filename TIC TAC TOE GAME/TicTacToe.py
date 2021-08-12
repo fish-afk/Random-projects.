@@ -373,7 +373,7 @@ while run:
         # ....
         time.sleep(0.5)
         game_screen.blit(color, (0, -100))
-        start_screen_display("Press Any key To Start", "Right click to check a box", "Left click to clear grid..",
+        start_screen_display("Press Any key To Start", "Left click to check a box", "Right click to clear grid..",
                              counter)
         load_logo_surfaces(logo_surface, logo2_surface)
 
