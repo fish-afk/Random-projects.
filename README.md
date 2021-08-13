@@ -1,0 +1,3 @@
+# SOME-Projects.
+All the random projects i have 
+made in python...
