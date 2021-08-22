@@ -58,22 +58,22 @@ async def on_message(message):
         elif message.content.startswith("$whats your name") and message.author.name != "sire":
             await message.channel.send(f'I am zeek, {message.author.name}.')
 
-        elif message.content.startswith("$what is btc price"):
+        if message.content.startswith("$what is BTC price"):
             await message.channel.send(
                 f'price of btc at {datetime.datetime.now()} is:\n {get_price_of_coin("bitcoin")}')
 
-        elif message.content.startswith('$what is eth price'):
+        elif message.content.startswith('$what is ETH price'):
             await message.channel.send(
                 f'price of eth at {datetime.datetime.now()} is:\n {get_price_of_coin("ethereum")}')
 
-        elif message.content.startswith('$tell me a joke'):
+        if message.content.startswith('$tell me a joke'):
             global counter
             if counter < 3:
                 counter += 1
             elif counter >= 3:
                 counter = 0
 
-            await message.channel.send(list_of_jks[counter])
+            await message.channel.send(f'```{list_of_jks[counter]}```')
 
         if message.content.startswith('$that was dry') and message.author.name == "sire":
             await message.channel.send("okay :(")
@@ -82,12 +82,19 @@ async def on_message(message):
             await message.channel.send("like your humour")
         
         if message.content.startswith('$get entire price chart'):
-            await message.channel.send(f'Bitcoin -> {get_price_of_coin("bitcoin")}\n'
+            await message.channel.send(f'```Bitcoin -> {get_price_of_coin("bitcoin")}\n'
                                             f'Ethereum -> {get_price_of_coin("ethereum")}\n'
                                             f'Dogecoin -> {get_price_of_coin("dogecoin")}\n'
                                             f'XRP -> {get_price_of_coin("xrp")}\n'
-                                            f'Litecoin -> {get_price_of_coin("litecoin")}\n')
-
+                                            f'Litecoin -> {get_price_of_coin("litecoin")}```\n')
+        
+        if message.content.startswith("$commands"):
+          await message.channel.send(f"```$hello -> greets you\n"
+                                       "$whats your name -> tells name\n"
+                                       "$what is BTC price -> scrapes ETH price\n"
+                                       "$what is ETH price -> scrapes ETH price \n"
+                                       "$tell me a joke -> tells a joke \n"
+                                       "$get entire price chart -> gets entire crypto price chart```")
 
 
 keep_alive()
@@ -96,3 +103,4 @@ with open("token.env", "r") as file:
   TOKEN = file.read()
 
 client.run(TOKEN)
+
