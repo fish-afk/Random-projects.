@@ -1,9 +1,10 @@
-# DISCLAIMER: THIS IS ONLY FOR EDUCATIONAL PURPOSES AND NOT TO BE USED FOR MALICIOUS ACTIVITY #
+# DISCLAIMER: THIS IS ONLY FOR EDUCATIONAL PURPOSES AND NOT TO BE USED FOR MALICIOUS ACTIVITY
    Instructions -
    
 1. Make sure all files are in same directory if you intend to clone the dir.
 2. Make sure to "pip install selenium" <-- 
 3. And   also   "pip install colorama" <--  
 4. Add your insta username and pass in the User_pass.env file..
-6. Add the spam text in spam_text.txt file..
-5. you can then run the main.py file in any ide or from the terminal/cmd...
+5. Add the spam text in spam_text.txt file..
+6. you can then run the main.py file in any ide or from the terminal/cmd...
+7. make sure the peron you want to send to is at the top of your dms in instagram (is the first on the list) .... <-- Important..
