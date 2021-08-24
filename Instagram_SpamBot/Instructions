@@ -4,4 +4,6 @@
 1. Make sure all files are in same directory if you intend to clone the dir.
 2. Make sure to "pip install selenium" <-- 
 3. And   also   "pip install colorama" <--  
+4. Add your insta username and pass in the User_pass.env file..
+6. Add the spam text in spam_text.txt file..
 5. you can then run the main.py file in any ide or from the terminal/cmd...
