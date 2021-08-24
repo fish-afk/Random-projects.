@@ -21,7 +21,7 @@ class Auto_Spam_Bot:
         self.unexpected_error = Fore.RED + "Unexpected error occurred..." + Fore.RESET
         self.spam_text_file = "spam_text.txt"
         self.time_sleep_2 = 0.527366264928348927348273472834729837489273  # messing around
-        self.range = 2
+        self.range = 60
 
     def login_with_these(self):
 
@@ -79,7 +79,7 @@ class Auto_Spam_Bot:
 
             for attempt in range(1, self.range+1, +1):
 
-                if attempt == 25:
+                if attempt == self.range // 2:
                     time.sleep(0.3)
                 else:
                     driver.find_element_by_tag_name("textarea").click()
@@ -89,6 +89,9 @@ class Auto_Spam_Bot:
 
                 if attempt == self.range:
                     print(Fore.GREEN + "Spamming session was successful... \u2713" + Fore.RESET)
+                    our_driver.implicit_wait_2()
+
+                    time.sleep(self.time_sleep)
 
         except:
             print(self.unexpected_error)

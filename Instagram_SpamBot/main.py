@@ -1,6 +1,7 @@
 import Bot_blueprint
 from selenium.common.exceptions import ElementClickInterceptedException
 from colorama import *
+import os
 
 
 with open("User_pass.env", "r") as person_info:
@@ -33,6 +34,8 @@ def main():
         commence.click_on_the_dms()
         commence.enter_first_chat_from_dms()
         commence.start_spam_procedure()
+        os.system("taskkill /F /IM chromedriver.exe /T")
+        print(Fore.GREEN + "Spamming session was successful... \u2713\n You may exit this screen -->" + Fore.RESET)
 
     except:
         print("\x1B[3m Unexpected error occurred \x1B[0m")
@@ -40,3 +43,6 @@ def main():
 
 if __name__ == '__main__':
     main()
+
+
+
