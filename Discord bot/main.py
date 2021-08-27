@@ -23,13 +23,13 @@ list_of_jks = [
 
 
 def get_price_of_coin(coin_type):
-    url = 'https://www.coindesk.com/price/' + coin_type
+    url = f'https://coinmarketcap.com/'
 
     html = requests.get(url).text
 
     soup = BeautifulSoup(html, 'html.parser')
 
-    my_div = soup.find('div', {'class': 'price-large'}).get_text()
+    my_div = soup.find('a', {'href': f'/currencies/{coin_type}/markets/'}).get_text()
 
     return my_div
 
@@ -86,7 +86,8 @@ async def on_message(message):
                                             f'Ethereum -> {get_price_of_coin("ethereum")}\n'
                                             f'Dogecoin -> {get_price_of_coin("dogecoin")}\n'
                                             f'XRP -> {get_price_of_coin("xrp")}\n'
-                                            f'Litecoin -> {get_price_of_coin("litecoin")}```\n')
+                                            f'Binance-coin -> {get_price_of_coin("binance-coin")}\n'
+                                            '```')
         
         if message.content.startswith("$commands"):
           await message.channel.send(f"```$hello -> greets you\n"
