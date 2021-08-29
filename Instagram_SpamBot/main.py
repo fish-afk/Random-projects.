@@ -1,3 +1,5 @@
+import time
+
 import Bot_blueprint
 from selenium.common.exceptions import ElementClickInterceptedException
 from colorama import *
@@ -36,6 +38,7 @@ def main():
         commence.start_spam_procedure()
         os.system("taskkill /F /IM chromedriver.exe /T")
         print(Fore.GREEN + "Spamming session was successful... \u2713\n You may exit this screen -->" + Fore.RESET)
+        time.sleep(10)
 
     except:
         print("\x1B[3m Unexpected error occurred \x1B[0m")
