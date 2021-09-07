@@ -60,11 +60,11 @@ async def on_message(message):
 
         if message.content.startswith("$what is BTC price"):
             await message.channel.send(
-                f'price of btc at {datetime.datetime.now()} is:\n {get_price_of_coin("bitcoin")}')
+                f'```price of btc at {datetime.datetime.now()} is:\n {get_price_of_coin("bitcoin")}```')
 
         elif message.content.startswith('$what is ETH price'):
             await message.channel.send(
-                f'price of eth at {datetime.datetime.now()} is:\n {get_price_of_coin("ethereum")}')
+                f'```price of eth at {datetime.datetime.now()} is:\n {get_price_of_coin("ethereum")}```')
 
         if message.content.startswith('$tell me a joke'):
             global counter
@@ -92,7 +92,7 @@ async def on_message(message):
         if message.content.startswith("$commands"):
           await message.channel.send(f"```$hello -> greets you\n"
                                        "$whats your name -> tells name\n"
-                                       "$what is BTC price -> scrapes ETH price\n"
+                                       "$what is BTC price -> scrapes BTC price\n"
                                        "$what is ETH price -> scrapes ETH price \n"
                                        "$tell me a joke -> tells a joke \n"
                                        "$get entire price chart -> gets entire crypto price chart```")
@@ -103,5 +103,5 @@ keep_alive()
 with open("token.env", "r") as file:
   TOKEN = file.read()
 
-client.run(TOKEN)
 
+client.run(TOKEN)
